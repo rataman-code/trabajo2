@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini RPG</title>
+    <style>
+        body {
+            background: #111;
+            color: #eee;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        #log {
+            border: 1px solid #555;
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+            background: #222;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            background:#333;
+            color:#fff;
+            border:1px solid #666;
+            cursor:pointer;
+        }
+
+        button:hover {
+            background:#444;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Mini RPG del Eduardo</h1>
+    <p>Un jueguito bien pinche sencillo.</p>
+
+    <div id="log"></div>
+
+    <br>
+
+    <button onclick="atacar()">Atacar</button>
+    <button onclick="curar()">Curarme</button>
+    <button onclick="buscar()">Buscar un easter egg</button>
+
+<script>
+    let vida = 100;
+    let enemigo = 80;
+
+    const log = document.getElementById("log");
+
+    function escribir(msg) {
+        log.innerHTML += msg + "<br>";
+        log.scrollTop = log.scrollHeight;
+    }
+
+    escribir("Comienza la aventura...");
+
+    function atacar() {
+        const dmg = Math.floor(Math.random() * 20) + 5;
+        enemigo -= dmg;
+        escribir("Le partiste su madre al enemigo con " + dmg + " de daño.");
+
+        if (enemigo <= 0) {
+            escribir("<b>¡Ganaste, cabrón!</b>");
+        }
+    }
+
+    function curar() {
+        const heal = Math.floor(Math.random() * 15) + 5;
+        vida += heal;
+        escribir("Te curaste " + heal + " puntos. Vida total: " + vida);
+    }
+
+    function buscar() {
+        const chance = Math.random();
+
+        if (chance < 0.3) {
+            escribir("<b>Encontraste un huevo secreto: “EL FURRO PROHIBIDO”.</b>");
+        } else if (chance < 0.6) {
+            escribir("Nada por aquí, pinche suerte de la chingada.");
+        } else {
+            escribir("Encontraste una moneda, wooow, qué emoción.");
+        }
+    }
+</script>
+
+</body>
+</html>
